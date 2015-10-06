@@ -6,6 +6,9 @@ This is set to work on a nexus 5. If you have any other phone, you will need to 
 The script runs on a computer, and sends commands over usb using Android debugging bridge (dev tools provided by Google).<br/>
 <b>It does NOT require root to use.</b>
 <br/>
+<br/>
+<h2>Important note:</h2>
+<b>This is not designed to be used for AFK healing... This is designed to give the fingers a break on a 3 hour event fight... You need to watch the game, and make sure the tank doesn't DC, or an AoE is getting you killed, or if anyone other than the tank needs a heal. I do not condone AFK botting, and please dont modify this script for that purpose. You will likely get yourself banned if caught.</b>
 <h1>Installation:</h1>
 (sorry guys... mac / linux only, but there are ways to get it running on PC)<br/>
 sudo cp heal /usr/bin<br/>
