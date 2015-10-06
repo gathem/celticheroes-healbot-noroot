@@ -7,6 +7,7 @@ The script runs on a computer, and sends commands over usb using Android debuggi
 <b>It does NOT require root to use.</b>
 <br/>
 <h1>Installation:</h1>
+(sorry guys... mac / linux only, but there are ways to get it running on PC)<br/>
 sudo cp heal /usr/bin<br/>
 sudo chmod 755 /usr/bin/heal<br/>
 You must install android developer tools because it is simply using "adb shell input tap <x> <y>"<br/>
