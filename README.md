@@ -1,4 +1,4 @@
-<h1>What this is:</h1>
+<h1>What it is:</h1>
 TL;DR:This is a simple script which uses android debug bridge to simulate physical taps on the phone
 <br/><br/>
 This is set to work on a nexus 5. If you have any other phone, you will need to adjust the coordinates of the taps.<br/>
@@ -11,9 +11,9 @@ sudo cp heal /usr/bin<br/>
 sudo chmod 755 /usr/bin/heal<br/>
 You must install android developer tools because it is simply using "adb shell input tap <x> <y>"<br/>
 <h1>Usage:</h1>
-1.) plug a usb cable into a mac or linux computer
-2.) make sure usb debugging is enabled on your phone (developer settings)
-3.) from commandline: heal <tank player slot (1-7)> true|false (use natures breath)<br/>
+1.) plug a usb cable into a mac or linux computer<br/>
+2.) make sure usb debugging is enabled on your phone (developer settings)<br/>
+3.) from commandline:\>$ heal <tank player slot (1-7)> true|false (use natures breath)<br/>
 <h1>What it does:</h1>
 Ensures you haven't died --v<br/>
 Targets the tank you specified --v<br/>
