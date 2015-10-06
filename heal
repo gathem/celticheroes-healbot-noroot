@@ -7,25 +7,25 @@ fi
 function target {
   case "$1" in
         1)
-          adb shell input tap 335 200
+          adb shell input tap 335 200 # x & y of player slot 1
           ;;
         2)
-          adb shell input tap 335 275
+          adb shell input tap 335 275 # x & y of player slot 2
           ;;
         3)
-          adb shell input tap 335 345
+          adb shell input tap 335 345 # x & y of player slot 3
           ;;
         4)
-          adb shell input tap 335 415
+          adb shell input tap 335 415 # x & y of player slot 4
           ;;
         5)
-          adb shell input tap 335 490
+          adb shell input tap 335 490 # x & y of player slot 5
           ;;
         6)
-          adb shell input tap 335 565
+          adb shell input tap 335 565 # x & y of player slot 6
           ;;
         7)
-          adb shell input tap 335 640
+          adb shell input tap 335 640 # x & y of player slot 7
           ;;
   esac
 }
@@ -39,18 +39,18 @@ while :
                 echo "Natures breathe disabled"
             fi
             echo ensuring not dead
-            adb shell input tap 894 510
+            adb shell input tap 894 510 # x & y coordinates of the resurect with idol button
             sleep 1
             echo targeting tank
             target $1
             sleep 1
             echo casting natures touch
-            adb shell input tap 1720 97
+            adb shell input tap 1720 97 # x & y coordinates of natures touch cast button
             sleep 1
             echo 6
             sleep 1
             echo casting meditate
-            adb shell input tap 1581 379
+            adb shell input tap 1581 379 # x & y coordinates of meditate cast button
             echo 5
             sleep 1
             echo 4
@@ -60,17 +60,15 @@ while :
             echo 2
             sleep 1
             echo 1
-#ensuring not dead
             echo ensuring not dead
-            adb shell input tap 894 510
+            adb shell input tap 894 510 # x & y coordinates of the resurect with idol button
             sleep 1
             clear
             echo targeting tank
             target $1
-#adb shell input tap 335 565
             sleep 1
             echo casting natures touch
-            adb shell input tap 1720 97
+            adb shell input tap 1720 97 # x & y coordinates of natures touch cast button
             sleep 1
             echo 8
             sleep 1
@@ -78,10 +76,9 @@ while :
             sleep 1
             echo 6
             sleep 1
-## maybe comment the next two out if you want long fight without regen lix
             if [ $2 = "true" ]; then
                 echo "Casting Natures breath"
-                adb shell input tap 1581 97            
+                adb shell input tap 1581 97 # x & y coordinates of natures breath cast button
             fi
             echo 5
             sleep 1
@@ -92,6 +89,4 @@ while :
             echo 2
             sleep 1
             echo 1
-
         done
-
