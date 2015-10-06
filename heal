@@ -1,0 +1,97 @@
+#!/bin/bash
+if [ "$#" -ne 22 ]
+then
+  echo "Usage: heal <tank player slot (1-7)> true|false (use natures breath)"
+  exit 1
+fi
+function target {
+  case "$1" in
+        1)
+          adb shell input tap 335 200
+          ;;
+        2)
+          adb shell input tap 335 275
+          ;;
+        3)
+          adb shell input tap 335 345
+          ;;
+        4)
+          adb shell input tap 335 415
+          ;;
+        5)
+          adb shell input tap 335 490
+          ;;
+        6)
+          adb shell input tap 335 565
+          ;;
+        7)
+          adb shell input tap 335 640
+          ;;
+  esac
+}
+
+while :
+       do
+            clear
+            if [ $2 = "true" ]; then
+                echo "Natures breath enabled"
+            else
+                echo "Natures breathe disabled"
+            fi
+            echo ensuring not dead
+            adb shell input tap 894 510
+            sleep 1
+            echo targeting tank
+            target $1
+            sleep 1
+            echo casting natures touch
+            adb shell input tap 1720 97
+            sleep 1
+            echo 6
+            sleep 1
+            echo casting meditate
+            adb shell input tap 1581 379
+            echo 5
+            sleep 1
+            echo 4
+            sleep 1
+            echo 3
+            sleep 1
+            echo 2
+            sleep 1
+            echo 1
+#ensuring not dead
+            echo ensuring not dead
+            adb shell input tap 894 510
+            sleep 1
+            clear
+            echo targeting tank
+            target $1
+#adb shell input tap 335 565
+            sleep 1
+            echo casting natures touch
+            adb shell input tap 1720 97
+            sleep 1
+            echo 8
+            sleep 1
+            echo 7
+            sleep 1
+            echo 6
+            sleep 1
+## maybe comment the next two out if you want long fight without regen lix
+            if [ $2 = "true" ]; then
+                echo "Casting Natures breath"
+                adb shell input tap 1581 97            
+            fi
+            echo 5
+            sleep 1
+            echo 4
+            sleep 1
+            echo 3
+            sleep 1
+            echo 2
+            sleep 1
+            echo 1
+
+        done
+
