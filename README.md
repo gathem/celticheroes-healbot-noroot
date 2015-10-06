@@ -12,6 +12,7 @@ sudo cp heal /usr/bin<br/>
 sudo chmod 755 /usr/bin/heal<br/>
 You must install android developer tools because it is simply using "adb shell input tap <x> <y>"<br/>
 <h1>Usage:</h1>
+0.) You will need to modify the x/y coordinates for all the spell cast buttons/resurect button/group player slots<br/>
 1.) plug a usb cable into a mac or linux computer<br/>
 2.) make sure usb debugging is enabled on your phone (developer settings)<br/>
 3.) from commandline:\>$ heal \<tank player slot (1-7)\> true|false (use natures breath)<br/>
