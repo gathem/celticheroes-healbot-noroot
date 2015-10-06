@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$#" -ne 22 ]
+if [ "$#" -ne 2 ]
 then
   echo "Usage: heal <tank player slot (1-7)> true|false (use natures breath)"
   exit 1
