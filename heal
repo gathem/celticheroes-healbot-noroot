@@ -1,4 +1,12 @@
 #!/bin/bash
+#################################################################################
+# The coordinates are mapped to standard bluestacks screen dimension. You can use
+# this script with any deviced connected over usb but you will need to update
+# the x/y coords of everything.
+#
+# To use: Craft your own main loop below to suit your needs
+# chmod 755 heal
+# ./heal 3 false
 if [ "$#" -ne 2 ]
 then
   echo "Usage: heal <tank player slot (1-7)> true|false (enable hotkey gear)"
@@ -32,30 +40,30 @@ function target {
 
 function cast {
   case "$1" in
-        1)
-          echo adb shell input tap 1581 97 # x & y of spell slot 1
-          ;;
-        2)
-          echo adb shell input tap 1720 97 # x & y of spell slot 2
-          ;;
-        3)
-          echo adb shell input tap 1581 197 # x & y of spell slot 3
-          ;;
-        4)
-          echo adb shell input tap 1720 97 # x & y of spell slot 4
-          ;;
-        5)
-          echo adb shell input tap 1581 97 # x & y of spell slot 5
-          ;;
-        6)
-          echo adb shell input tap 1720 97 # x & y of spell slot 6
-          ;;
-        7)
-          echo adb shell input tap 1581 97 # x & y of spell slot 7
-          ;;
-        8)
-          echo adb shell input tap 1720 97 # x & y of spell slot 8
-          ;;
+    1)
+      echo adb shell input tap 1581 97 # x & y of spell slot 1
+      ;;
+    2)
+      echo adb shell input tap 1720 97 # x & y of spell slot 2
+      ;;
+    3)
+      echo adb shell input tap 1581 197 # x & y of spell slot 3
+      ;;
+    4)
+      echo adb shell input tap 1720 97 # x & y of spell slot 4
+      ;;
+    5)
+      echo adb shell input tap 1581 97 # x & y of spell slot 5
+      ;;
+    6)
+      echo adb shell input tap 1720 97 # x & y of spell slot 6
+      ;;
+    7)
+      echo adb shell input tap 1581 97 # x & y of spell slot 7
+      ;;
+    8)
+      echo adb shell input tap 1720 97 # x & y of spell slot 8
+      ;;
   esac
   sleep 0.25
 }
@@ -76,8 +84,10 @@ function targetTank {
 
 ################################################################################
 # The following is your "loop"
-# Each loop should be customized to a specific char. In my case, I equip two items for touch, and two items for breath before each cast.
-# My setup is complex so I dont just cast touch/breath. I hotkey items
+# Each loop should be customized to a specific char. In my case, I equip two items
+# for touch, and two items for breath before each cast. Because I use hotkeys sometimes
+# when I use occult, but NOT when I use EDL I added a flag to enable/disable the Usage
+# of hotkeyed items.
 
 function touch { # helper function for casting touch
   if [ $1 = "true" ]; then
@@ -101,18 +111,18 @@ function breath { # helper function for casting breath
   sleep 1
 }
 while :
-       do
-            clear
-            maybeResurect
-            touch $2
-            breath $2
-            touch $2
-            breath $2
-            touch $2
-            breath $2
-            # others 
-            cast 7
-            sleep 1
-            cast 8
-            sleep 1
-        done
+  do
+    clear
+    maybeResurect
+    touch $2
+    breath $2
+    touch $2
+    breath $2
+    touch $2
+    breath $2
+    # others 
+    cast 7
+    sleep 1
+    cast 8
+    sleep 1
+  done
