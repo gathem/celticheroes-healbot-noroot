@@ -1,92 +1,118 @@
 #!/bin/bash
 if [ "$#" -ne 2 ]
 then
-  echo "Usage: heal <tank player slot (1-7)> true|false (use natures breath)"
+  echo "Usage: heal <tank player slot (1-7)> true|false (enable hotkey gear)"
   exit 1
 fi
 function target {
   case "$1" in
         1)
-          adb shell input tap 335 200 # x & y of player slot 1
+          echo adb shell input tap 335 200 # x & y of player slot 1
           ;;
         2)
-          adb shell input tap 335 275 # x & y of player slot 2
+          echo adb shell input tap 335 275 # x & y of player slot 2
           ;;
         3)
-          adb shell input tap 335 345 # x & y of player slot 3
+          echo adb shell input tap 335 345 # x & y of player slot 3
           ;;
         4)
-          adb shell input tap 335 415 # x & y of player slot 4
+          echo adb shell input tap 335 415 # x & y of player slot 4
           ;;
         5)
-          adb shell input tap 335 490 # x & y of player slot 5
+          echo adb shell input tap 335 490 # x & y of player slot 5
           ;;
         6)
-          adb shell input tap 335 565 # x & y of player slot 6
+          echo adb shell input tap 335 565 # x & y of player slot 6
           ;;
         7)
-          adb shell input tap 335 640 # x & y of player slot 7
+          echo adb shell input tap 335 640 # x & y of player slot 7
           ;;
   esac
 }
 
+function cast {
+  case "$1" in
+        1)
+          echo adb shell input tap 1581 97 # x & y of spell slot 1
+          ;;
+        2)
+          echo adb shell input tap 1720 97 # x & y of spell slot 2
+          ;;
+        3)
+          echo adb shell input tap 1581 197 # x & y of spell slot 3
+          ;;
+        4)
+          echo adb shell input tap 1720 97 # x & y of spell slot 4
+          ;;
+        5)
+          echo adb shell input tap 1581 97 # x & y of spell slot 5
+          ;;
+        6)
+          echo adb shell input tap 1720 97 # x & y of spell slot 6
+          ;;
+        7)
+          echo adb shell input tap 1581 97 # x & y of spell slot 7
+          ;;
+        8)
+          echo adb shell input tap 1720 97 # x & y of spell slot 8
+          ;;
+  esac
+  sleep 0.25
+}
+
+function maybeResurect {
+  sleep 0.5
+  echo ensuring not dead
+  echo adb shell input tap 894 510
+  sleep 0.5
+}
+
+function targetTank {
+  echo targeting tank
+  sleep 0.5
+  target $1
+  sleep 0.5
+}
+
+################################################################################
+# The following is your "loop"
+# Each loop should be customized to a specific char. In my case, I equip two items for touch, and two items for breath before each cast.
+# My setup is complex so I dont just cast touch/breath. I hotkey items
+
+function touch { # helper function for casting touch
+  if [ $1 = "true" ]; then
+    cast 6
+    cast 4
+  fi
+  targetTank
+  cast 2
+  maybeResurect
+  sleep 1
+}
+
+function breath { # helper function for casting breath
+  if [ $1 = "true" ]; then
+    cast 5
+    cast 3
+  fi
+  targetTank
+  cast 2
+  maybeResurect
+  sleep 1
+}
 while :
        do
             clear
-            if [ $2 = "true" ]; then
-                echo "Natures breath enabled"
-            else
-                echo "Natures breathe disabled"
-            fi
-            echo ensuring not dead
-            adb shell input tap 894 510 # x & y coordinates of the resurect with idol button
+            maybeResurect
+            touch $2
+            breath $2
+            touch $2
+            breath $2
+            touch $2
+            breath $2
+            # others 
+            cast 7
             sleep 1
-            echo targeting tank
-            target $1
+            cast 8
             sleep 1
-            echo casting natures touch
-            adb shell input tap 1720 97 # x & y coordinates of natures touch cast button
-            sleep 1
-            echo 6
-            sleep 1
-            echo casting meditate
-            adb shell input tap 1581 379 # x & y coordinates of meditate cast button
-            echo 5
-            sleep 1
-            echo 4
-            sleep 1
-            echo 3
-            sleep 1
-            echo 2
-            sleep 1
-            echo 1
-            echo ensuring not dead
-            adb shell input tap 894 510 # x & y coordinates of the resurect with idol button
-            sleep 1
-            clear
-            echo targeting tank
-            target $1
-            sleep 1
-            echo casting natures touch
-            adb shell input tap 1720 97 # x & y coordinates of natures touch cast button
-            sleep 1
-            echo 8
-            sleep 1
-            echo 7
-            sleep 1
-            echo 6
-            sleep 1
-            if [ $2 = "true" ]; then
-                echo "Casting Natures breath"
-                adb shell input tap 1581 97 # x & y coordinates of natures breath cast button
-            fi
-            echo 5
-            sleep 1
-            echo 4
-            sleep 1
-            echo 3
-            sleep 1
-            echo 2
-            sleep 1
-            echo 1
         done
