@@ -1,0 +1,80 @@
+#!/bin/bash
+#################################################################################
+# The coordinates are mapped to standard bluestacks screen dimension. You can use
+# this script with any deviced connected over usb but you will need to update
+# the x/y coords of everything.
+#
+# To use: Craft your own main loop below to suit your needs
+# chmod 755 heal
+# ./rogue
+
+function cast {
+  echo "cast $1"
+  case "$1" in
+    1)
+      adb shell input tap 1037 40 # x & y of spell slot 1
+      ;;
+    2)
+      adb shell input tap 1105 40 # x & y of spell slot 2
+      ;;
+    3)
+      adb shell input tap 1037 114 # x & y of spell slot 3
+      ;;
+    4)
+      adb shell input tap 1105 114 # x & y of spell slot 4
+      ;;
+    5)
+      adb shell input tap 1037 182 # x & y of spell slot 5
+      ;;
+    6)
+      adb shell input tap 1105 182 # x & y of spell slot 6
+      ;;
+    7)
+      adb shell input tap 1037 258 # x & y of spell slot 7
+      ;;
+    8)
+      adb shell input tap 1105 258 # x & y of spell slot 8
+      ;;
+  esac
+  sleep 0.5
+}
+
+function maybeResurect {
+  sleep 0.5
+  echo ensuring not dead
+  adb shell input tap 570 266
+  sleep 0.5
+}
+
+
+################################################################################
+# The following is your "loop"
+# Each loop should be customized to a specific char. In my case, I equip two items
+# for touch, and two items for breath before each cast. Because I use hotkeys sometimes
+# when I use occult, but NOT when I use EDL I added a flag to enable/disable the Usage
+# of hotkeyed items.
+
+while :
+  do
+    clear
+  #  maybeResurect
+    cast 7
+    sleep 0.5
+    cast 8
+    sleep 0.5
+
+    cast 6
+    sleep 0.5
+    cast 5
+    sleep 0.5
+
+    cast 4
+    sleep 0.5
+    cast 3
+    sleep 0.5
+
+    cast 2
+    sleep 0.5
+    cast 1
+    sleep 0.5
+  done
